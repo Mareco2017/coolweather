@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
+    <!--加人一个切换城市的按钮-->
+    <Button
+        android:id="@+id/nav_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_add"/>
+
     <!--居中显示标题-->
     <TextView
         android:id="@+id/title_city"
