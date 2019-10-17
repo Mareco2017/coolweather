@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
+import com.coolweather.android.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,6 +89,26 @@ public class Utility {
             }
         }
         return false;
+    }
+
+
+    /**
+     * 将返回的 JSON 数据解析成 Weather 实体类
+     */
+    public static Weather handleWeatherResponse(String response){
+        try {
+            // 先是通过 JSONObject 和 JSONArray 将天气数据中的主体内容解析出来
+            JSONObject jsonObject = new JSONObject( response );
+            JSONArray jsonArray = jsonObject.getJSONArray( "HeWeather" );
+            String weatherContent = jsonArray.getJSONObject( 0 ).toString();
+            
+            // 然后由于我们之前已经按照上面的数据格式定义过相应的 GSON 实体类，因此只需要通过调用 fromJson()
+            // 方法，就能直接将 JSON 数据转换成 Weather 对象了
+            return new Gson().fromJson( weatherContent,Weather.class );
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--显示天气的主要布局-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <!--展示必应的图片-->
+    <ImageView
+        android:id="@+id/bing_pic_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <!--因为天气界面中的内容比较多，使用 ScrollView 可以允许我们通过滚动的方式查看屏幕以外的内容-->
+    <ScrollView
+        android:id="@+id/weather_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <!--由于ScrollView 的内部只允许存在一个直接子布局，因此这里嵌套一个垂直方向的 LinearLayout-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <!--引入各个布局-->
+            <include layout="@layout/title"/>
+            <include layout="@layout/now" />
+            <include layout="@layout/forecast"/>
+            <include layout="@layout/aqi"/>
+            <include layout="@layout/suggestion" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
